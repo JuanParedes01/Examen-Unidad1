@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <title>Lista de Compras</title>
+        <meta name="viewpoint" content="width=device-width, user-scalable=no, initial-scale=1.0, maximus-scale=1.0, minimum-scale=1.0">
+        <link   rel="stylesheet" 
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+                integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
+                crossorigin="anonymous">
+
+        <style>
+            body{
+                background: #E3E5EB;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .imgs{
+                width: 4cm; 
+                height: 4cm;
+            }
+            .grafica{
+            align-items: unset;
+			height:500px;
+            width: 500px;
+			border-collapse: separate;	
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(12, 111, 211, 0.16);
+		} 
+        </style>    
+</head>
+
+<body>
+    <div>
+        <div class = "row">
+            <main id="items" class="col-sm-8 row"></main>
+
+            <aside class="col-sm-4">
+                <h2>Carrito</h2>
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <p class="text-right">Total: <span id="total"></span>&dollar;</p>
+            </aside>
+
+        </div>
+    </div>
+
+    <div>
+        <button class="graficar">Graficar</button>
+        <canvas class="grafica" id="Grafica"></canvas>
+    </div>
+
+    <script src="Chart.js"></script>
+    <script src="jquery.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
