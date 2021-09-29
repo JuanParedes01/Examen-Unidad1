@@ -1,6 +1,6 @@
-window.onload = function(){
+let BI = 0, RDR = 0, HMCC = 0, GOW = 0; 
 
-    let BI, RDR, HMCC, GOW;
+window.onload = function(){
 
     let baseDeDatos = [
         {
@@ -73,6 +73,19 @@ window.onload = function(){
 
     function aniadirCarrito(){
         carrito.push(this.getAttribute('marcador'))
+        var marca = this.getAttribute('marcador');
+        if(marca == 1){
+            BI = BI + 350;
+        }
+        else if(marca == 2){
+            RDR = RDR + 1900;
+        }
+        else if(marca == 3){
+            HMCC = HMCC + 1500;
+        }
+        else if(marca == 4){
+            GOW = GOW + 500;
+        }
         calcularTotal();
         renderizarCarrito();
     }
@@ -115,6 +128,20 @@ window.onload = function(){
             return carritoId !== id;
         });
 
+        var item = this.getAttribute('item');
+        if(item == 1){
+            BI = 0;
+        }
+        else if(item == 2){
+            RDR = 0;
+        }
+        else if(item == 3){
+            HMCC = 0;
+        }
+        else if(item == 4){
+            GOW = 0;
+        }
+
         renderizarCarrito();
         calcularTotal();
     }
@@ -132,86 +159,38 @@ window.onload = function(){
         let totalDosDecimales = total.toFixed(2);
         $total.textContent = totalDosDecimales;
 
-        if (total == 350) {
-            BI = 350;
-        }
-        else if (total == 700) {
-            BI = 700;
-        }
-
-        else if (total == 1900) {
-            RDR = 1900;
-        }
-        else if (total == 3800) {
-            RDR = 3800;
-        }
-
-        else if (total == 1500) {
-            HMCC = 1500;
-        }
-        else if (total == 3000) {
-            HMCC = 3000;
-        }
-
-        else if (total == 500) {
-            GOW = 500;
-        }
-        else if (total == 1000){
-            GOW = 1000;
-        }
-
-        else if (total == 4250) {
-            BI = 350;
-            RDR = 1900;
-            HMCC = 1500;
-            GOW = 500;
-        }
-        else if (total == 8500) {
-            BI = 700;
-            RDR = 3800;
-            HMCC = 3000;
-            GOW = 1000;
-        }
-
-        else if (total == 2250) {
-            BI = 350;
-            RDR = 1900;
-        }
-
-        else if (total == 1850) {
-            BI = 350;
-            HMCC = 1500;
-        }
-
-        else if (total == 850) {
-            BI = 350;
-            GOW = 500;
-        }
-
-        else if (total == 3400) {
-            RDR = 1900;
-            HMCC = 1500;
-        }
     }
 
     renderItems();
+}
+
+    let Graficas = document.getElementById("Grafica");
+        
+    var chart = new Chart(Graficas,{
+        type:"bar",
+        data:{
+            labels:["Bioshock Infinite (X360)","Red Dead Redemption II", "Halo Master Chief Collection", "God of War"],
+            datasets:[
+                {
+                    label:"Gráfica de Productos",
+                }
+            ]
+        }
+    })
 
     $(".graficar").click(function(){
-        let Graficas = document.getElementById("Grafica");
-    
-        var chart = new Chart(Graficas,{
+        chart.destroy();
+
+        chart = new Chart(Graficas,{
             type:"bar",
             data:{
                 labels:["Bioshock Infinite (X360)","Red Dead Redemption II", "Halo Master Chief Collection", "God of War"],
                 datasets:[
                     {
                         label:"Gráfica de Productos",
-                        backgroundcolor:"rgb(0,0,0)",
                         data:[BI, RDR, HMCC, GOW]
                     }
                 ]
             }
         })
     });
-}
-
